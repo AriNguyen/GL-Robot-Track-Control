@@ -1,4 +1,4 @@
-# Robot Tracking & Controlling (.NET Framework, OpenGL, OpenGL.Control)
+# Robot Tracking & Controlling .NET Framework & OpenGL
 
 ## Requirement
 - .NET Framework 4.7.2

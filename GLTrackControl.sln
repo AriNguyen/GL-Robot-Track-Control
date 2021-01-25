@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.808.4
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GLTrackControl", "GLTrackControl.csproj", "{77CBDF69-DF3F-4FB3-83CE-AE7A230B6B2B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|anycpu = Debug|anycpu
+		Release|anycpu = Release|anycpu
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{77CBDF69-DF3F-4FB3-83CE-AE7A230B6B2B}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{77CBDF69-DF3F-4FB3-83CE-AE7A230B6B2B}.Debug|anycpu.Build.0 = Debug|anycpu
+		{77CBDF69-DF3F-4FB3-83CE-AE7A230B6B2B}.Release|anycpu.ActiveCfg = Release|anycpu
+		{77CBDF69-DF3F-4FB3-83CE-AE7A230B6B2B}.Release|anycpu.Build.0 = Release|anycpu
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {72B34534-5167-4C42-95A7-0F3AE928B7CA}
+	EndGlobalSection
+EndGlobal

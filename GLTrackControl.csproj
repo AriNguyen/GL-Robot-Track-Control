@@ -42,6 +42,7 @@
     <Compile Include="Graphics\Colors.cs" />
     <Compile Include="Graphics\Sphere.cs" />
     <Compile Include="Graphics\Cube.cs" />
+    <Compile Include="Graphics\BaseObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Graphics\" />

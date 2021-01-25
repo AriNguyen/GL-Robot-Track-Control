@@ -21,13 +21,13 @@ namespace GLTrackControl.Graphics
 
         void Start()
         {
-            window.Load += loaded;
-            window.Resize += resize;
-            window.RenderFrame += renderF;
+            window.Load += Loaded;
+            window.Resize += Resize;
+            window.RenderFrame += RenderF;
             //window.UpdateFrame
             window.Run(1.0 / 60.0);
         }
-        void resize(object o, EventArgs e)
+        void Resize(object o, EventArgs e)
         {
             GL.Viewport(0, 0, window.Width, window.Height);
             GL.MatrixMode(MatrixMode.Projection);
@@ -37,7 +37,7 @@ namespace GLTrackControl.Graphics
             GL.MatrixMode(MatrixMode.Modelview);
         }
 
-        void renderF(object o, EventArgs e)
+        void RenderF(object o, EventArgs e)
         {
             GL.LoadIdentity();
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
@@ -50,7 +50,7 @@ namespace GLTrackControl.Graphics
             //GL.Rotate(theta, 1.0, 1.0, 0.0);
 
             // draw 3 Coordinates Axes
-            drawCoordinatesAxes();
+            DrawCoordinatesAxes();
 
             DrawSphere(0.5, 50, 50, 10, 10, 10);
 
@@ -61,14 +61,14 @@ namespace GLTrackControl.Graphics
             window.SwapBuffers();
         }
 
-        void loaded(object o, EventArgs e)
+        void Loaded(object o, EventArgs e)
         {
             GL.ClearColor(0.1f, 0.1f, 0.1f, 1.0f); // black background
             GL.Clear(ClearBufferMask.ColorBufferBit);
             GL.Enable(EnableCap.DepthTest);
         }
 
-        void drawCoordinatesAxes()
+        void DrawCoordinatesAxes()
         {
             // X axis: red
             GL.Begin(PrimitiveType.Lines);
@@ -95,13 +95,13 @@ namespace GLTrackControl.Graphics
             //DrawSphere(0.3, 100, 100, 0, 0, 0);
 
             // draw XY grid
-            drawGrid(20, 20, 20, 4);
+            DrawGrid(20, 20, 20, 4);
         }
 
         /**
          * <param name="s">space between 2 grids </param>
          */
-        void drawGrid(double x, double y, double z, double s)
+        void DrawGrid(double x, double y, double z, double s)
         {
 
             // draw Y grid
@@ -132,80 +132,9 @@ namespace GLTrackControl.Graphics
 
         void DrawSphere(double r, int lats, int longs, int X, int Y, int Z)
         {
-            int i, j;
-            double M_PI = 3.14;
-            for (i = 0; i <= lats; i++)
-            {
-                double lat0 = M_PI * (-0.5 + (double)(i - 1) / lats);
-                double z0 = Math.Sin(lat0);
-                double zr0 = Math.Cos(lat0);
-
-                double lat1 = M_PI * (-0.5 + (double)i / lats);
-                double z1 = Math.Sin(lat1);
-                double zr1 = Math.Cos(lat1);
-
-                GL.Begin(PrimitiveType.QuadStrip);
-                GL.Color3(1.0, 0.0, 0.0);
-                for (j = 0; j <= longs; j++)
-                {
-                    double lng = 2 * M_PI * (double)(j - 1) / longs;
-                    double x = Math.Cos(lng);
-                    double y = Math.Sin(lng);
-
-                    GL.Normal3(x * zr0, y * zr0, z0);
-                    GL.Vertex3(r * x * zr0 + X, r * y * zr0 + Y, r * z0 + Z);
-                    GL.Normal3(x * zr1, y * zr1, z1);
-                    GL.Vertex3(r * x * zr1 + X, r * y * zr1 + Y, r * z1 + Z);
-                }
-                GL.End();
-            }
-        }
-
-        void drawCube()
-        {
-            GL.Begin(PrimitiveType.Quads);
-
-            GL.Color3(1.0, 1.0, 0.0);
-            GL.Vertex3(-10.0, 10.0, 10.0);
-            GL.Vertex3(-10.0, 10.0, -10.0);
-            GL.Vertex3(-10.0, -10.0, -10.0);
-            GL.Vertex3(-10.0, -10.0, 10.0);
-
-            GL.Color3(1.0, 0.0, 1.0);
-            GL.Vertex3(10.0, 10.0, 10.0);
-            GL.Vertex3(10.0, 10.0, -10.0);
-            GL.Vertex3(10.0, -10.0, -10.0);
-            GL.Vertex3(10.0, -10.0, 10.0);
-
-            GL.Color3(0.0, 1.0, 1.0);
-            GL.Vertex3(10.0, -10.0, 10.0);
-            GL.Vertex3(10.0, -10.0, -10.0);
-            GL.Vertex3(-10.0, -10.0, -10.0);
-            GL.Vertex3(-10.0, -10.0, 10.0);
-
-            GL.Color3(1.0, 0.0, 0.0);
-            GL.Vertex3(10.0, 10.0, 10.0);
-            GL.Vertex3(10.0, 10.0, -10.0);
-            GL.Vertex3(-10.0, 10.0, -10.0);
-            GL.Vertex3(-10.0, 10.0, 10.0);
-
-            GL.Color3(0.0, 1.0, 0.0);
-            GL.Vertex3(10.0, 10.0, -10.0);
-            GL.Vertex3(10.0, -10.0, -10.0);
-            GL.Vertex3(-10.0, -10.0, -10.0);
-            GL.Vertex3(-10.0, 10.0, -10.0);
-
-            GL.Color3(0.0, 0.0, 1.0);
-            GL.Vertex3(10.0, 10.0, 10.0);
-            GL.Vertex3(10.0, -10.0, 10.0);
-            GL.Vertex3(-10.0, -10.0, 10.0);
-            GL.Vertex3(-10.0, 10.0, 10.0);
-
-            GL.End();
-        }
-
-        void drawText()
-        {
+            var s = new Sphere(X, Y, Z);
+            s.Color(1.0, 0.0, 0.0);
+            s.Draw(r, lats, longs);
         }
     }
 }

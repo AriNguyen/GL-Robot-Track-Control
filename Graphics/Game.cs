@@ -1,6 +1,7 @@
 ﻿using System;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
+using GLTrackControl.Robots;
 
 namespace GLTrackControl.Graphics
 {
@@ -52,7 +53,7 @@ namespace GLTrackControl.Graphics
             // draw 3 Coordinates Axes
             DrawCoordinatesAxes();
 
-            DrawSphere(0.5, 50, 50, 10, 10, 10);
+            DisplayDrone(0.5, 50, 50, 10, 10, 10);
 
             // increment degree to rotate
             theta += 0.5;
@@ -130,11 +131,11 @@ namespace GLTrackControl.Graphics
 
         }
 
-        void DrawSphere(double r, int lats, int longs, int X, int Y, int Z)
+        void DisplayDrone(double r, int lats, int longs, int X, int Y, int Z)
         {
-            var s = new Sphere(X, Y, Z);
+            var s = new Drone(X, Y, Z);
             s.Color(1.0, 0.0, 0.0);
-            s.Draw(r, lats, longs);
+            s.Display(r, lats, longs);
         }
     }
 }

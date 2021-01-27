@@ -34,6 +34,7 @@
     <Reference Include="OpenTK.GLControl">
       <HintPath>packages\OpenTK.GLControl.3.1.0\lib\net20\OpenTK.GLControl.dll</HintPath>
     </Reference>
+    <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
@@ -42,10 +43,13 @@
     <Compile Include="Graphics\Colors.cs" />
     <Compile Include="Graphics\Sphere.cs" />
     <Compile Include="Graphics\Cube.cs" />
-    <Compile Include="Graphics\BaseObject.cs" />
+    <Compile Include="Graphics\GraphicsObject.cs" />
+    <Compile Include="Robots\Vehicle.cs" />
+    <Compile Include="Robots\Drone.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Graphics\" />
+    <Folder Include="Robots\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="OpenTK.dll.config" />

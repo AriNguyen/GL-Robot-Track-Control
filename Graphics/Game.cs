@@ -8,15 +8,16 @@ namespace GLTrackControl.Graphics
     public class Game
     {
         GameWindow window;
-        double xAxis, yAxis, zAxis;
-        double theta;
+        private double xAxisLen, yAxisLen, zAxisLen, gridSpacing;
+        private double rotateDegree;
 
-        public Game(GameWindow window, double xAxis, double yAxis, double zAxis)
+        public Game(GameWindow window, double xAxisLen, double yAxisLen, double zAxisLen, double gridSpacing)
         {
             this.window = window;
-            this.xAxis = xAxis;
-            this.yAxis = yAxis;
-            this.zAxis = zAxis;
+            this.xAxisLen = xAxisLen;
+            this.yAxisLen = yAxisLen;
+            this.zAxisLen = zAxisLen;
+            this.gridSpacing = gridSpacing;
             Start();
         }
 
@@ -47,18 +48,13 @@ namespace GLTrackControl.Graphics
 
             GL.Translate(5.0, 0.0, -30.0);
             GL.Rotate(9.0, 90.0, -90.0, 1.0);
-            GL.Rotate(theta, 0.0, 1.0, 1.0);
+            GL.Rotate(rotateDegree, 0.0, 1.0, 1.0);
             //GL.Rotate(theta, 1.0, 1.0, 0.0);
 
-            // draw 3 Coordinates Axes
-            DrawCoordinatesAxes();
-
+            DisplayCoordinatesAxes();
             DisplayDrone(0.5, 50, 50, 10, 10, 10);
 
-            // increment degree to rotate
-            theta += 0.5;
-
-
+            rotateDegree += 0.5;
             window.SwapBuffers();
         }
 
@@ -69,7 +65,7 @@ namespace GLTrackControl.Graphics
             GL.Enable(EnableCap.DepthTest);
         }
 
-        void DrawCoordinatesAxes()
+        void DisplayCoordinatesAxes()
         {
             // X axis: red
             GL.Begin(PrimitiveType.Lines);
@@ -92,43 +88,35 @@ namespace GLTrackControl.Graphics
             GL.Vertex3(0.0, 0.0, 20.0); // ending point of the line
             GL.End();
 
-            // (45.0) point
-            //DrawSphere(0.3, 100, 100, 0, 0, 0);
-
-            // draw XY grid
-            DrawGrid(20, 20, 20, 4);
+            DisplayXYGrid(xAxisLen, yAxisLen, zAxisLen, gridSpacing);
         }
 
-        /**
-         * <param name="s">space between 2 grids </param>
-         */
-        void DrawGrid(double x, double y, double z, double s)
+        void DisplayXYGrid(double x, double y, double z, double gridSpace)
         {
 
             // draw Y grid
-            int t1 = Convert.ToInt32(x / s); // iteration
+            int t1 = Convert.ToInt32(x / gridSpace); // iteration
             for (int i = -t1; i <= t1; i++)
             {
                 GL.Begin(PrimitiveType.Lines);
                 GL.Color3(0.5, 0.5, 0.5);
                 GL.LineWidth(5);
-                GL.Vertex3(i * s, -y, 0.0);
-                GL.Vertex3(i * s, y, 0.0);
+                GL.Vertex3(i * gridSpace, -y, 0.0);
+                GL.Vertex3(i * gridSpace, y, 0.0);
                 GL.End();
             }
 
             // draw X grid
-            int t2 = Convert.ToInt32(y / s); // iteration
+            int t2 = Convert.ToInt32(y / gridSpace); // iteration
             for (int i = -t2; i <= t2; i++)
             {
                 GL.Begin(PrimitiveType.Lines);
                 GL.Color3(0.5, 0.5, 0.5);
                 GL.LineWidth(5);
-                GL.Vertex3(-x, i * s, 0.0);
-                GL.Vertex3(x, i * s, 0.0);
+                GL.Vertex3(-x, i * gridSpace, 0.0);
+                GL.Vertex3(x, i * gridSpace, 0.0);
                 GL.End();
             }
-
         }
 
         void DisplayDrone(double r, int lats, int longs, int X, int Y, int Z)

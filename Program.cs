@@ -9,7 +9,7 @@ namespace GLTrackControl
         public static void Main(string[] args)
         {
             GameWindow window = new GameWindow(800, 800);
-            Game ga = new Game(window, 20, 20, 20);
+            Game ga = new Game(window, 20, 20, 20, 4);
         }
     }
 }

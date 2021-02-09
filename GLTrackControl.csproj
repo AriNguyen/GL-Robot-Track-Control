@@ -50,10 +50,12 @@
   <ItemGroup>
     <Folder Include="Graphics\" />
     <Folder Include="Robots\" />
+    <Folder Include="TestData\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="OpenTK.dll.config" />
     <None Include="packages.config" />
+    <None Include="TestData\test_position.pcd" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

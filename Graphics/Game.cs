@@ -18,10 +18,10 @@ namespace GLTrackControl.Graphics
             this.yAxisLen = yAxisLen;
             this.zAxisLen = zAxisLen;
             this.gridSpacing = gridSpacing;
-            Start();
+            //Start();
         }
 
-        void Start()
+        public void Start()
         {
             window.Load += Loaded;
             window.Resize += Resize;
@@ -39,6 +39,7 @@ namespace GLTrackControl.Graphics
             GL.MatrixMode(MatrixMode.Modelview);
         }
 
+        // Draw all objects here
         void RenderF(object o, EventArgs e)
         {
             GL.LoadIdentity();
@@ -53,6 +54,8 @@ namespace GLTrackControl.Graphics
 
             DisplayCoordinatesAxes();
             DisplayDrone(0.5, 50, 50, 10, 10, 10);
+
+            DisplayLine(0, 0, 0, 10, 10, 10);
 
             rotateDegree += 0.5;
             window.SwapBuffers();
@@ -121,9 +124,15 @@ namespace GLTrackControl.Graphics
 
         void DisplayDrone(double r, int lats, int longs, int X, int Y, int Z)
         {
-            var s = new Drone(X, Y, Z);
-            s.Color(1.0, 0.0, 0.0);
-            s.Display(r, lats, longs);
+            var drone = new Drone(X, Y, Z);
+            drone.Color(1.0, 0.0, 0.0);
+            drone.Display(r, lats, longs);
+        }
+
+        void DisplayLine(int x1, int y1, int z1, int x2, int y2, int z2)
+        {
+            var line = new Line(x1, y1, z1);
+            line.Display(x2, y2, z2);
         }
     }
 }

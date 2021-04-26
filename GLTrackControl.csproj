@@ -46,6 +46,7 @@
     <Compile Include="Graphics\GraphicsObject.cs" />
     <Compile Include="Robots\Vehicle.cs" />
     <Compile Include="Robots\Drone.cs" />
+    <Compile Include="Graphics\Line.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Graphics\" />

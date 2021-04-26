@@ -50,7 +50,6 @@ namespace GLTrackControl.Graphics
             GL.Translate(5.0, 0.0, -30.0);
             GL.Rotate(9.0, 90.0, -90.0, 1.0);
             GL.Rotate(rotateDegree, 0.0, 1.0, 1.0);
-            //GL.Rotate(theta, 1.0, 1.0, 0.0);
 
             DisplayCoordinatesAxes();
             DisplayDrone(0.5, 50, 50, 10, 10, 10);

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Numerics;
 
-namespace GLTrackControl.Graphics
+namespace GLTrackControl.GraphicsObject
 {
     public class GraphicsObject
     {

@@ -3,7 +3,7 @@ using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using GLTrackControl.Robots;
 
-namespace GLTrackControl.Graphics
+namespace GLTrackControl.GraphicsObject
 {
     public class Game
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using OpenTK.Graphics.OpenGL;
 
-namespace GLTrackControl.Graphics
+namespace GLTrackControl.GraphicsObject
 {
     public class Cube : GraphicsObject
     {
